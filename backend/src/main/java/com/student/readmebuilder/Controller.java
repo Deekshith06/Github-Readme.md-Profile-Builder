@@ -28,20 +28,8 @@ public class Controller {
     @PostMapping("/generate")
     public ResponseEntity<Map<String, String>> generateReadme(@RequestBody Map<String, String> formData) {
 
-        // Pull values from the JSON body sent by frontend
-        String name = formData.getOrDefault("name", "Your Name");
-        String title = formData.getOrDefault("title", "Developer");
-        String about = formData.getOrDefault("about", "I love coding!");
-        String skills = formData.getOrDefault("skills", "Python, Java");
-        String github = formData.getOrDefault("github", "");
-        String linkedin = formData.getOrDefault("linkedin", "");
-        String twitter = formData.getOrDefault("twitter", "");
-        String email = formData.getOrDefault("email", "");
-        String portfolio = formData.getOrDefault("portfolio", "");
-
-        // Generate the README markdown string
-        String readmeContent = generator.generate(name, title, about, skills,
-                github, linkedin, twitter, email, portfolio);
+        // Generate the README markdown string (generator reads all fields from the map)
+        String readmeContent = generator.generate(formData);
 
         // Also save it to a file in the generated/ folder
         // This is optional but nice to have

@@ -105,12 +105,16 @@ function filterReadme(md) {
 document.getElementById("readmeForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const gv = id => document.getElementById(id).value.trim();
+    const gv = id => (document.getElementById(id)?.value || "").trim();
     const f = {
         name: gv("name"), title: gv("title"),
         about: gv("about"), skills: gv("skills") || "Coding",
         github: gv("github"), linkedin: gv("linkedin"),
-        twitter: gv("twitter"), email: gv("email"), portfolio: gv("portfolio")
+        twitter: gv("twitter"), email: gv("email"), portfolio: gv("portfolio"),
+        instagram: gv("instagram"), location: gv("location"), spotify: gv("spotify"),
+        currentProject: gv("currentProject"), currentProjectUrl: gv("currentProjectUrl"),
+        collaborateProject: gv("collaborateProject"), collaborateProjectUrl: gv("collaborateProjectUrl"),
+        askMeAbout: gv("askMeAbout")
     };
 
     showState("loading");

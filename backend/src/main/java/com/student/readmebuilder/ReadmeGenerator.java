@@ -292,26 +292,42 @@ public class ReadmeGenerator {
         }
 
         // Build the full README markdown string
-        public String generate(String name, String title, String about,
-                        String skillsRaw, String github,
-                        String linkedin, String twitter,
-                        String email, String portfolio) {
+        public String generate(Map<String, String> d) {
+                String name = d.getOrDefault("name", "Your Name");
+                String title = d.getOrDefault("title", "Developer");
+                String about = d.getOrDefault("about", "I love coding!");
+                String skillsRaw = d.getOrDefault("skills", "Python");
+                String github = d.getOrDefault("github", "");
+                String linkedin = d.getOrDefault("linkedin", "");
+                String twitter = d.getOrDefault("twitter", "");
+                String email = d.getOrDefault("email", "");
+                String portfolio = d.getOrDefault("portfolio", "");
+                String instagram = d.getOrDefault("instagram", "");
+                String location = d.getOrDefault("location", "");
+                String curProj = d.getOrDefault("currentProject", "");
+                String curProjUrl = d.getOrDefault("currentProjectUrl", "");
+                String collabProj = d.getOrDefault("collaborateProject", "");
+                String collabUrl = d.getOrDefault("collaborateProjectUrl", "");
+                String askAbout = d.getOrDefault("askMeAbout", "");
+                String spotify = d.getOrDefault("spotify", "");
 
-                // Parse skills list
+                // Parse + categorise skills
                 List<String> all = new ArrayList<>();
                 for (String s : skillsRaw.split(",")) {
                         String t = s.trim();
                         if (!t.isEmpty())
                                 all.add(t);
                 }
-
-                // Group skills by category, preserving insertion order
                 Map<String, List<String>> catMap = new LinkedHashMap<>();
                 String[] catOrder = { "LANG", "AI", "WEB", "CLOUD", "DB", "DATAVIZ", "TOOLS", "CONCEPTS", "OTHER" };
                 for (String c : catOrder)
                         catMap.put(c, new ArrayList<>());
                 for (String skill : all)
                         catMap.get(getCategory(skill)).add(skill);
+
+                List<String> langs = catMap.getOrDefault("LANG", List.of());
+                List<String> top4 = all.size() > 4 ? all.subList(0, 4) : all;
+                String fn = name.split(" ")[0];
 
                 StringBuilder sb = new StringBuilder();
 
@@ -323,12 +339,12 @@ public class ReadmeGenerator {
                 String capsuleUrl = "https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text="
                                 + encTitle + "&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc="
                                 + encAbout + "&descAlignY=55&descSize=18";
-                sb.append("<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"")
-                                .append(capsuleUrl).append("\">\n")
+                sb.append("<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"").append(capsuleUrl)
+                                .append("\">\n")
                                 .append("  <img alt=\"Header\" src=\"").append(capsuleUrl)
                                 .append("\">\n</picture>\n\n");
 
-                // Typing animation — cycles through title + top skills
+                // Typing SVG
                 StringBuilder lines = new StringBuilder(encTitle).append("+%F0%9F%9A%80");
                 int tc = 0;
                 for (String s : all) {
@@ -337,45 +353,109 @@ public class ReadmeGenerator {
                         lines.append(";").append(s.trim().replace(" ", "+")).append("+%F0%9F%92%BB");
                 }
                 lines.append(";Open+Source+Contributor+%E2%9C%A8;Building+the+Future+%F0%9F%A4%96");
-                sb.append(
-                                "<picture>\n  <img src=\"https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&repeat=true&width=600&height=100&lines=")
+                sb.append("<picture>\n  <img src=\"https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00D9FF&center=true&vCenter=true&repeat=true&width=600&height=100&lines=")
                                 .append(lines).append("\" alt=\"Typing Animation\">\n</picture>\n\n");
+                sb.append("<img src=\"https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif\" width=\"100%\" alt=\"divider\">\n\n");
 
-                sb.append(
-                                "<img src=\"https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif\" width=\"100%\" alt=\"divider\">\n\n");
-
-                if (github != null && !github.isBlank()) {
+                // Stats badges
+                if (!github.isBlank()) {
                         sb.append("[![Profile Views](https://komarev.com/ghpvc/?username=").append(github)
                                         .append("&label=Profile%20Views&color=00D9FF&style=for-the-badge)](https://github.com/")
                                         .append(github).append(")\n");
                         sb.append("[![GitHub followers](https://img.shields.io/github/followers/").append(github)
                                         .append("?logo=github&style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/")
+                                        .append(github).append(")\n");
+                        if (!twitter.isBlank()) {
+                                String tw = twitter.startsWith("http") ? twitter.replaceAll(".*/", "") : twitter;
+                                sb.append("[![Twitter Follow](https://img.shields.io/twitter/follow/").append(tw)
+                                                .append("?logo=twitter&style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://twitter.com/")
+                                                .append(tw).append(")\n");
+                        }
+                        sb.append("[![Repos](https://badges.pufler.dev/repos/").append(github)
+                                        .append("?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/")
+                                        .append(github).append("?tab=repositories)\n");
+                        sb.append("[![Years](https://badges.pufler.dev/years/").append(github)
+                                        .append("?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/")
+                                        .append(github).append(")\n");
+                        sb.append("[![Commits](https://badges.pufler.dev/commits/monthly/").append(github)
+                                        .append("?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/")
                                         .append(github).append(")\n\n");
                 }
                 sb.append("</div>\n\n---\n\n");
 
                 // === ABOUT ME ===
                 sb.append("## 🚀 About Me\n\n");
-                sb.append(
-                                "<img align=\"right\" alt=\"Coding\" width=\"380\" src=\"https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif\">\n\n");
-                String fn = name.split(" ")[0];
-                List<String> top4 = all.size() > 4 ? all.subList(0, 4) : all;
+                sb.append("<img align=\"right\" alt=\"Coding\" width=\"400\" src=\"https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif\">\n\n");
                 sb.append("```python\nclass ").append(fn).append(":\n    def __init__(self):\n")
                                 .append("        self.name = \"").append(name).append("\"\n")
-                                .append("        self.role = \"").append(title).append("\"\n")
-                                .append("        self.about = \"").append(about).append("\"\n")
-                                .append("        self.top_skills = [");
-                for (int i = 0; i < top4.size(); i++) {
-                        sb.append("\"").append(top4.get(i)).append("\"");
-                        if (i < top4.size() - 1)
+                                .append("        self.role = \"").append(title).append("\"\n");
+                if (!location.isBlank())
+                        sb.append("        self.location = \"").append(location).append("\"\n");
+                // languages from LANG skills (top 4)
+                sb.append("        self.languages = [");
+                List<String> langList = langs.isEmpty() ? top4 : (langs.size() > 4 ? langs.subList(0, 4) : langs);
+                for (int i = 0; i < langList.size(); i++) {
+                        sb.append("\"").append(langList.get(i)).append("\"");
+                        if (i < langList.size() - 1)
                                 sb.append(", ");
                 }
-                sb.append(
-                                "]\n\n    def say_hi(self):\n        return \"Thanks for visiting! 🚀\"\n```\n\n<br clear=\"right\"/>\n\n---\n\n");
+                sb.append("]\n");
+                // interests from AI/CONCEPTS/WEB top 3
+                List<String> interestPool = new ArrayList<>();
+                interestPool.addAll(catMap.getOrDefault("AI", List.of()));
+                interestPool.addAll(catMap.getOrDefault("CONCEPTS", List.of()));
+                interestPool.addAll(catMap.getOrDefault("WEB", List.of()));
+                if (!interestPool.isEmpty()) {
+                        sb.append("        self.interests = [");
+                        List<String> top3i = interestPool.size() > 3 ? interestPool.subList(0, 3) : interestPool;
+                        for (int i = 0; i < top3i.size(); i++) {
+                                sb.append("\"").append(top3i.get(i)).append("\"");
+                                if (i < top3i.size() - 1)
+                                        sb.append(", ");
+                        }
+                        sb.append("]\n");
+                }
+                // current_work dict
+                if (!curProj.isBlank() || !collabProj.isBlank() || !askAbout.isBlank()) {
+                        sb.append("\n    def current_work(self):\n        return {\n");
+                        if (!curProj.isBlank())
+                                sb.append("            \"🎯 project\": \"").append(curProj).append("\",\n");
+                        if (!collabProj.isBlank())
+                                sb.append("            \"🤝 collaborating\": \"").append(collabProj).append("\",\n");
+                        if (!askAbout.isBlank())
+                                sb.append("            \"💬 ask me about\": \"").append(askAbout).append("\"\n");
+                        sb.append("        }\n");
+                }
+                sb.append("\n    def get_daily_routine(self):\n        return \"☕ Code → 🧠 Learn → 🔄 Repeat\"\n```\n\n<br clear=\"right\"/>\n\n---\n\n");
 
-                // === TECH STACK (categorized) ===
+                // === CURRENT FOCUS ===
+                boolean hasFocus = !curProj.isBlank() || !collabProj.isBlank() || !askAbout.isBlank();
+                if (hasFocus) {
+                        sb.append("## 🔥 Current Focus\n\n");
+                        String fireGif = "<img src=\"https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif\" width=\"28\">";
+                        if (!curProj.isBlank()) {
+                                sb.append(fireGif).append(" Building **");
+                                if (!curProjUrl.isBlank())
+                                        sb.append("[").append(curProj).append("](").append(curProjUrl).append(")");
+                                else
+                                        sb.append(curProj);
+                                sb.append("**\n\n");
+                        }
+                        if (!collabProj.isBlank()) {
+                                sb.append(fireGif).append(" Open to collaborate on **");
+                                if (!collabUrl.isBlank())
+                                        sb.append("[").append(collabProj).append("](").append(collabUrl).append(")");
+                                else
+                                        sb.append(collabProj);
+                                sb.append("**\n\n");
+                        }
+                        if (!askAbout.isBlank())
+                                sb.append(fireGif).append(" Ask me about **").append(askAbout).append("**\n\n");
+                        sb.append("---\n\n");
+                }
+
+                // === TECH STACK ===
                 sb.append("## 🛠️ Tech Stack\n\n<div align=\"center\">\n\n");
-
                 String[][] catInfo = {
                                 { "LANG", "👨\u200D💻", "Programming Languages" },
                                 { "AI", "🤖", "AI / ML & Data Science" },
@@ -387,105 +467,126 @@ public class ReadmeGenerator {
                                 { "CONCEPTS", "🧠", "Core Concepts" },
                                 { "OTHER", "🔧", "Other Skills" },
                 };
-
                 for (String[] ci : catInfo) {
                         String catKey = ci[0];
                         List<String> cSkills = catMap.get(catKey);
                         if (cSkills == null || cSkills.isEmpty())
                                 continue;
-
                         sb.append("### ").append(ci[1]).append(" ").append(ci[2]).append("\n\n");
-
-                        // Animated SVG icons for Language / Cloud / Web / DB sections
                         if (!catKey.equals("CONCEPTS") && !catKey.equals("DATAVIZ") && !catKey.equals("OTHER")) {
                                 String icons = buildTechIcons(cSkills);
                                 if (!icons.isEmpty())
                                         sb.append(icons).append("\n");
                         }
-
-                        // Animated GIF icons for Tools section
                         if (catKey.equals("TOOLS")) {
                                 String gifs = buildToolGifs(cSkills);
                                 if (!gifs.isEmpty())
                                         sb.append(gifs).append("\n");
                         }
-
-                        // Shield.io badges for ALL skills in this category
                         sb.append(buildBadges(cSkills)).append("\n");
-                        sb.append(
-                                        "<img src=\"https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif\" width=\"700\">\n\n");
+                        sb.append("<img src=\"https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif\" width=\"700\">\n\n");
                 }
-
                 sb.append("</div>\n\n---\n\n");
 
-                // === GITHUB STATS ===
-                if (github != null && !github.isBlank()) {
-                        sb.append("## 📊 GitHub Stats\n\n<div align=\"center\">\n\n");
+                // === PERFORMANCE METRICS ===
+                if (!github.isBlank()) {
+                        sb.append("## 📊 Performance Metrics\n\n<div align=\"center\">\n\n");
                         sb.append("[![GitHub Streak](https://streak-stats.demolab.com?user=").append(github)
-                                        .append("&theme=radical&hide_border=true&background=0D1117&ring=00D9FF&fire=00D9FF&currStreakLabel=00D9FF)](https://git.io/streak-stats)\n\n");
-                        sb.append(
-                                        "<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=")
+                                        .append("&theme=radical&hide_border=true&background=0D1117&ring=00D9FF&fire=00D9FF&currStreakLabel=00D9FF&stroke=00D9FF&sideNums=00D9FF&sideLabels=C9D1D9&dates=C9D1D9)](https://git.io/streak-stats)\n\n");
+                        sb.append("<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=")
                                         .append(github).append("&theme=radical\" />\n");
-                        sb.append(
-                                        "<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=")
+                        sb.append("<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=")
                                         .append(github).append("&theme=radical\" />\n");
-                        sb.append(
-                                        "<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=")
+                        sb.append("<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=")
                                         .append(github).append("&theme=radical\" />\n");
-                        sb.append(
-                                        "<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/stats?username=")
-                                        .append(github).append("&theme=radical\" />\n\n");
-                        sb.append("### 🏆 GitHub Trophies\n\n");
+                        sb.append("<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/stats?username=")
+                                        .append(github).append("&theme=radical\" />\n");
+                        sb.append("<img width=\"49%\" src=\"https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=")
+                                        .append(github).append("&theme=radical&utcOffset=5.5\" />\n\n");
+                        sb.append("</div>\n\n---\n\n");
+
+                        // === GITHUB ACHIEVEMENTS (TROPHIES) ===
+                        sb.append("## 🏆 GitHub Achievements\n\n<div align=\"center\">\n\n");
                         sb.append("<img src=\"https://github-profile-trophy.vercel.app/?username=").append(github)
-                                        .append("&theme=radical&no-frame=true&no-bg=true&column=4&row=2&margin-w=15\" />\n\n");
-                        sb.append("### 📈 Contribution Graph\n\n");
+                                        .append("&theme=radical&no-frame=true&no-bg=true&column=4&row=2&margin-w=15&margin-h=15\" />\n\n");
+                        sb.append("</div>\n\n---\n\n");
+
+                        // === CONTRIBUTION HEATMAP ===
+                        sb.append("## 📈 Contribution Heatmap\n\n<div align=\"center\">\n\n");
+                        sb.append("<img src=\"https://ghchart.rshah.org/00D9FF/").append(github)
+                                        .append("\" alt=\"GitHub Contribution Chart\" width=\"90%\" />\n\n");
                         sb.append("[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=")
                                         .append(github)
-                                        .append("&custom_title=Contribution+Graph&hide_border=true&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true)](https://github.com/")
+                                        .append("&custom_title=Contribution+Graph&hide_border=true&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&area_color=00D9FF)](https://github.com/")
                                         .append(github).append(")\n\n");
                         sb.append("</div>\n\n---\n\n");
                 }
 
                 // === CONNECT ===
                 sb.append("## 🌐 Connect With Me\n\n<div align=\"center\">\n\n");
-                if (portfolio != null && !portfolio.isBlank())
+                if (!portfolio.isBlank())
                         sb.append("<a href=\"").append(portfolio).append(
                                         "\">\n  <img src=\"https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=About.me&logoColor=white\" />\n</a>\n");
-                if (linkedin != null && !linkedin.isBlank()) {
+                if (!linkedin.isBlank()) {
                         String u = linkedin.startsWith("http") ? linkedin : "https://linkedin.com/in/" + linkedin;
                         sb.append("<a href=\"").append(u).append(
                                         "\">\n  <img src=\"https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white\" />\n</a>\n");
                 }
-                if (twitter != null && !twitter.isBlank()) {
+                if (!twitter.isBlank()) {
                         String u = twitter.startsWith("http") ? twitter : "https://twitter.com/" + twitter;
                         sb.append("<a href=\"").append(u).append(
                                         "\">\n  <img src=\"https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white\" />\n</a>\n");
                 }
-                if (github != null && !github.isBlank())
+                if (!instagram.isBlank()) {
+                        String u = instagram.startsWith("http") ? instagram : "https://instagram.com/" + instagram;
+                        sb.append("<a href=\"").append(u).append(
+                                        "\">\n  <img src=\"https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white\" />\n</a>\n");
+                }
+                if (!github.isBlank())
                         sb.append("<a href=\"https://github.com/").append(github).append(
                                         "\">\n  <img src=\"https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white\" />\n</a>\n");
-                if (email != null && !email.isBlank())
+                if (!email.isBlank())
                         sb.append("<a href=\"mailto:").append(email).append(
                                         "\">\n  <img src=\"https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white\" />\n</a>\n");
 
-                sb.append(
-                                "\n### 💭 Dev Quote\n\n![Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical&border=true)\n\n");
-                sb.append(
-                                "<img src=\"https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif\" width=\"1000\">\n\n</div>\n\n---\n\n");
+                sb.append("\n<img src=\"https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif\" width=\"1000\">\n\n");
+                sb.append("### 💭 Dev Quote of the Day\n\n![Quote](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical&border=true)\n\n");
+
+                if (!spotify.isBlank()) {
+                        sb.append("### 🎵 Currently Vibing To\n\n");
+                        sb.append("[![spotify](https://spotify-github-profile.kittinanx.com/api/view?uid=")
+                                        .append(spotify)
+                                        .append("&cover_image=true&theme=compact&show_offline=false&background_color=0d1117&interchange=false&bar_color=00d9ff&bar_color_cover=true)](https://spotify-github-profile.kittinanx.com/api/view?uid=")
+                                        .append(spotify).append("&redirect=true)\n\n");
+                }
+                sb.append("<img src=\"https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif\" width=\"1000\">\n\n</div>\n\n---\n\n");
 
                 // === FOOTER ===
-                sb.append(
-                                "<div align=\"center\">\n\n### ⚡ \"Code is like humor. When you have to explain it, it's bad.\" – Cory House\n\n");
-                sb.append(
-                                "<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n  <img src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n</picture>\n\n");
-                if (github != null && !github.isBlank()) {
+                sb.append("<div align=\"center\">\n\n### ⚡ \"Code is like humor. When you have to explain it, it's bad.\" – Cory House\n\n");
+                sb.append("<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n  <img src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n</picture>\n\n");
+                if (!github.isBlank()) {
                         sb.append("**⭐ From [").append(name).append("](https://github.com/").append(github)
-                                        .append(")** | Built with ❤️ and ☕\n\n");
-                        sb.append(
-                                        "<img src=\"https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake-dark.svg\" alt=\"Snake animation\" />\n\n");
+                                        .append(")** | Building the future with AI 🚀\n\n");
+                        sb.append("<img src=\"https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake-dark.svg\" alt=\"Snake animation\" />\n\n");
                 }
                 sb.append("</div>\n");
                 return sb.toString();
+        }
+
+        // backward compat shim
+        public String generate(String name, String title, String about, String skillsRaw,
+                        String github, String linkedin, String twitter, String email, String portfolio) {
+                Map<String, String> d = new HashMap<>();
+                d.put("name", name);
+                d.put("title", title);
+                d.put("about", about);
+                d.put("skills", skillsRaw);
+                d.put("github", github);
+                d.put("linkedin", linkedin);
+                d.put("twitter", twitter);
+                d.put("email", email);
+                d.put("portfolio", portfolio);
+                return generate(d);
         }
 
         // Techstack-generator animated SVG icons for recognized skills

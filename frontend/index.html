@@ -410,10 +410,25 @@
                             <input type="email" id="email" name="email" placeholder="you@example.com" />
                         </div>
 
+                        <!-- Instagram -->
+                        <div class="form-group">
+                            <label for="instagram">📸 Instagram <span class="optional-tag">optional</span></label>
+                            <div class="input-prefix">
+                                <span class="prefix">instagram.com/</span>
+                                <input type="text" id="instagram" name="instagram" placeholder="your-handle" />
+                            </div>
+                        </div>
+
                         <!-- Portfolio -->
                         <div class="form-group social-full">
                             <label for="portfolio">🌐 Portfolio URL <span class="optional-tag">optional</span></label>
                             <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com" />
+                        </div>
+
+                        <!-- Location -->
+                        <div class="form-group social-full">
+                            <label for="location">📍 Location <span class="optional-tag">optional</span></label>
+                            <input type="text" id="location" name="location" placeholder="e.g. India 🇮🇳" />
                         </div>
                     </div>
 
@@ -437,7 +452,36 @@
                             Badge</label>
                     </div>
 
+                    <!-- Current Focus collapsible -->
+                    <div class="extras-toggle" onclick="toggleSection('focusPanel','focusArrow')">
+                        <span>🔥 Current Focus</span>
+                        <span class="extras-arrow" id="focusArrow">▼</span>
+                    </div>
+                    <div class="extras-panel stack" id="focusPanel">
+                        <div class="form-group">
+                            <label>🎯 Current Project</label>
+                            <input type="text" id="currentProject" placeholder="e.g. EV Dashboard" />
+                        </div>
+                        <div class="form-group">
+                            <label>🔗 Project URL <span class="optional-tag">optional</span></label>
+                            <input type="url" id="currentProjectUrl" placeholder="https://github.com/..." />
+                        </div>
+                        <div class="form-group">
+                            <label>🤝 Collaborate On</label>
+                            <input type="text" id="collaborateProject" placeholder="e.g. Movie Recommendation System" />
+                        </div>
+                        <div class="form-group">
+                            <label>🔗 Collab URL <span class="optional-tag">optional</span></label>
+                            <input type="url" id="collaborateProjectUrl" placeholder="https://github.com/..." />
+                        </div>
+                        <div class="form-group">
+                            <label>💬 Ask Me About</label>
+                            <input type="text" id="askMeAbout" placeholder="Python, ML, Computer Vision" />
+                        </div>
+                    </div>
+
                     <!-- Coding Profiles collapsible -->
+
                     <div class="extras-toggle" onclick="toggleSection('codingPanel','codingArrow')">
                         <span>🏅 Coding Profiles</span>
                         <span class="extras-arrow" id="codingArrow">▼</span>
