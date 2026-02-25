@@ -290,7 +290,7 @@ function buildReadme(f) {
     });
 
     const capsTitle = title.replace(/ /g, "%20").replace(/&/g, "%26");
-    const aboutSnip = about.replace(/ /g, "%20").substring(0, 50);
+    const aboutSnip = about.replace(/ /g, "%20").replace(/,/g, "%2C").replace(/&/g, "%26").substring(0, 50);
 
     let social = "";
     if (portfolio) social += `<a href="${portfolio}">\n  <img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=About.me&logoColor=white" />\n</a>\n`;
