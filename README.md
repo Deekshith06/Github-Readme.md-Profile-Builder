@@ -7,6 +7,10 @@
 
 A dynamic web application that generates stunning, professional **GitHub Profile READMEs** with a few clicks. Features a modern brutalist design, dynamic categorization, and an offline JavaScript fallback builder.
 
+### 🌐 Live Demo
+**[Try it out here!](https://github-readme-md-profile-builder-qz1afmksj.vercel.app)** 
+*No installation required!*
+
 ---
 
 ## 🔄 How It Works
