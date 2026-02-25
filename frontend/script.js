@@ -66,12 +66,26 @@ function switchChipTab(cat, btn) {
     btn?.classList.add("active");
 }
 
-// ---- github extras collapsible ----
-function toggleExtras() {
-    const panel = document.getElementById("extrasPanel");
-    const arrow = document.getElementById("extrasArrow");
-    panel.classList.toggle("open");
-    arrow.classList.toggle("open");
+// ---- generic collapsible toggle ----
+function toggleSection(panelId, arrowId) {
+    document.getElementById(panelId)?.classList.toggle("open");
+    document.getElementById(arrowId)?.classList.toggle("open");
+}
+function toggleExtras() { toggleSection("extrasPanel", "extrasArrow"); }
+
+// ---- build coding profiles section ----
+function buildCodingSection() {
+    const lc = document.getElementById("leetcode")?.value.trim();
+    const hr = document.getElementById("hackerrank")?.value.trim();
+    const he = document.getElementById("hackerearth")?.value.trim();
+    if (!lc && !hr && !he) return "";
+
+    let s = "## 🏅 Coding Profiles\n\n<div align=\"center\">\n\n";
+    if (lc) s += `<a href="https://leetcode.com/${lc}">\n  <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" />\n</a>\n`;
+    if (hr) s += `<a href="https://hackerrank.com/${hr}">\n  <img src="https://img.shields.io/badge/HackerRank-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" />\n</a>\n`;
+    if (he) s += `<a href="https://hackerearth.com/@${he}">\n  <img src="https://img.shields.io/badge/HackerEarth-2C3454?style=for-the-badge&logo=hackerearth&logoColor=white" />\n</a>\n`;
+    s += "\n</div>\n\n---\n\n";
+    return s;
 }
 
 // ---- strip unchecked extras from generated markdown ----
@@ -119,6 +133,11 @@ document.getElementById("readmeForm").addEventListener("submit", async function 
     }
 
     generatedReadme = filterReadme(generatedReadme);
+
+    // inject coding profiles section before Connect section
+    const codingSection = buildCodingSection();
+    if (codingSection)
+        generatedReadme = generatedReadme.replace("## 🌐 Connect With Me", codingSection + "## 🌐 Connect With Me");
 
     document.getElementById("markdownContent").textContent = generatedReadme;
     showState("result");

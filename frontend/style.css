@@ -716,6 +716,15 @@ body {
     padding: 14px 16px;
 }
 
+/* single-column variant for input fields */
+.extras-panel.stack {
+    grid-template-columns: 1fr;
+}
+
+.extras-panel.stack.open {
+    max-height: 320px;
+}
+
 .check-item {
     display: flex;
     align-items: center;

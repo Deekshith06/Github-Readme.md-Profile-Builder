@@ -437,6 +437,35 @@
                             Badge</label>
                     </div>
 
+                    <!-- Coding Profiles collapsible -->
+                    <div class="extras-toggle" onclick="toggleSection('codingPanel','codingArrow')">
+                        <span>🏅 Coding Profiles</span>
+                        <span class="extras-arrow" id="codingArrow">▼</span>
+                    </div>
+                    <div class="extras-panel stack" id="codingPanel">
+                        <div class="form-group">
+                            <label>⚡ LeetCode</label>
+                            <div class="input-prefix">
+                                <span class="prefix">leetcode.com/</span>
+                                <input type="text" id="leetcode" placeholder="your-username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>💚 HackerRank</label>
+                            <div class="input-prefix">
+                                <span class="prefix">hackerrank.com/</span>
+                                <input type="text" id="hackerrank" placeholder="your-username" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>💜 HackerEarth</label>
+                            <div class="input-prefix">
+                                <span class="prefix">hackerearth.com/@</span>
+                                <input type="text" id="hackerearth" placeholder="your-username" />
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Generate button -->
                     <button type="submit" class="btn-generate" id="generateBtn">
                         <span class="btn-icon">⚡</span>
