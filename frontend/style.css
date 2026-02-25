@@ -318,7 +318,8 @@ body {
 /* ===== FORM PANEL ===== */
 .form-panel {
     padding: 0;
-    overflow: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
 }
 
 .panel-header {
