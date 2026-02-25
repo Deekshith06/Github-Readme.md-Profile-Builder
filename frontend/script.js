@@ -414,7 +414,10 @@ ${social}
 
 ### ⚡ "Code is like humor. When you have to explain it, it's bad." – Cory House
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling">
+</picture>
 
 ${github ? `**⭐ From [${name}](https://github.com/${github})** | Built with ❤️ and ☕\n\n${snake}` : `**Built with ❤️ and ☕**\n\n`}
 

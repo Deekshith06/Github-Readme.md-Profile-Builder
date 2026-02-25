@@ -477,7 +477,7 @@ public class ReadmeGenerator {
                 sb.append(
                                 "<div align=\"center\">\n\n### ⚡ \"Code is like humor. When you have to explain it, it's bad.\" – Cory House\n\n");
                 sb.append(
-                                "<img src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\" />\n\n");
+                                "<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n  <img src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling\">\n</picture>\n\n");
                 if (github != null && !github.isBlank()) {
                         sb.append("**⭐ From [").append(name).append("](https://github.com/").append(github)
                                         .append(")** | Built with ❤️ and ☕\n\n");
