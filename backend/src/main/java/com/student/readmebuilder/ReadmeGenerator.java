@@ -320,11 +320,13 @@ public class ReadmeGenerator {
                 String encTitle = title.replace(" ", "%20").replace("&", "%26");
                 String encAbout = about.replace(" ", "%20").replace(",", "%2C").replace("&", "%26")
                                 .substring(0, Math.min(about.length(), 50));
-                sb.append(
-                                "<picture>\n  <img alt=\"Header\" src=\"https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=")
-                                .append(encTitle)
-                                .append("&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc=")
-                                .append(encAbout).append("&descAlignY=55&descSize=18\" />\n</picture>\n\n");
+                String capsuleUrl = "https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text="
+                                + encTitle + "&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc="
+                                + encAbout + "&descAlignY=55&descSize=18";
+                sb.append("<picture>\n  <source media=\"(prefers-color-scheme: dark)\" srcset=\"")
+                                .append(capsuleUrl).append("\">\n")
+                                .append("  <img alt=\"Header\" src=\"").append(capsuleUrl)
+                                .append("\">\n</picture>\n\n");
 
                 // Typing animation — cycles through title + top skills
                 StringBuilder lines = new StringBuilder(encTitle).append("+%F0%9F%9A%80");

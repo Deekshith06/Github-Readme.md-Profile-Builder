@@ -339,7 +339,8 @@ function buildReadme(f) {
 # 👨‍💻 ${name}
 
 <picture>
-  <img alt="Header" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=${capsTitle}&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc=${aboutSnip}&descAlignY=55&descSize=18" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=${capsTitle}&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc=${aboutSnip}&descAlignY=55&descSize=18">
+  <img alt="Header" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=${capsTitle}&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc=${aboutSnip}&descAlignY=55&descSize=18">
 </picture>
 
 <picture>
