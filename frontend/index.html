@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>README Profile Builder ⚡</title>
+    <meta name="description"
+        content="Build stunning GitHub profile READMEs in seconds. Dark theme, badges, stats — all auto-generated." />
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- ===== HERO HEADER ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✨ Student Project</div>
+            <h1 class="hero-title">
+                <span class="gradient-text">README</span> Profile Builder
+            </h1>
+            <p class="hero-subtitle">
+                Fill the form → Get a stunning GitHub profile README with badges, stats & animations 🚀
+            </p>
+            <div class="hero-code">
+                <span class="code-line"><span class="code-keyword">const</span> readme = <span
+                        class="code-func">generate</span>(<span class="code-str">yourInfo</span>);</span>
+            </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="scroll-hint">scroll down ↓</div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container">
+
+        <div class="layout-grid">
+
+            <!-- ===== LEFT: FORM PANEL ===== -->
+            <section class="form-panel glass-card">
+                <div class="panel-header">
+                    <div class="panel-dot red"></div>
+                    <div class="panel-dot yellow"></div>
+                    <div class="panel-dot green"></div>
+                    <span class="panel-title">profile_info.json</span>
+                </div>
+
+                <form id="readmeForm" class="form">
+
+                    <!-- Name -->
+                    <div class="form-group">
+                        <label for="name">👤 Full Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Seelaboyina Deekshith" required />
+                    </div>
+
+                    <!-- Title -->
+                    <div class="form-group">
+                        <label for="title">🎯 Professional Title <span class="required">*</span></label>
+                        <input type="text" id="title" name="title" placeholder="e.g. AI & ML Engineer" required />
+                    </div>
+
+                    <!-- About Me -->
+                    <div class="form-group">
+                        <label for="about">💬 About Me <span class="required">*</span></label>
+                        <textarea id="about" name="about" rows="3"
+                            placeholder="e.g. Passionate about building AI systems and solving real-world problems"
+                            required></textarea>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-group">
+                        <label for="skills">🛠️ Skills <span class="required">*</span> <span class="hint">(comma
+                                separated)</span></label>
+                        <textarea id="skills" name="skills" rows="2"
+                            placeholder="e.g. Python, Java, TensorFlow, React, Docker, SQL"></textarea>
+                        <!-- Categorized quick-add skill chips -->
+                        <div class="chip-container">
+                            <!-- Tab buttons for each category -->
+                            <div class="chip-tabs">
+                                <button type="button" class="chip-tab active" onclick="switchChipTab('lang',this)">🖥️
+                                    Languages</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('ai',this)">🤖 AI /
+                                    ML</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('web',this)">🌐
+                                    Web</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('cloud',this)">☁️
+                                    Cloud</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('db',this)">🗄️
+                                    Database</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('viz',this)">📊 Data
+                                    Viz</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('tools',this)">⚙️
+                                    Tools</button>
+                                <button type="button" class="chip-tab" onclick="switchChipTab('concepts',this)">🧠
+                                    Concepts</button>
+                            </div>
+
+                            <!-- Languages -->
+                            <div class="chip-panel" id="chip-lang">
+                                <button type="button" class="chip" onclick="addSkill('Python')">Python</button>
+                                <button type="button" class="chip" onclick="addSkill('Java')">Java</button>
+                                <button type="button" class="chip" onclick="addSkill('JavaScript')">JavaScript</button>
+                                <button type="button" class="chip" onclick="addSkill('TypeScript')">TypeScript</button>
+                                <button type="button" class="chip" onclick="addSkill('C')">C</button>
+                                <button type="button" class="chip" onclick="addSkill('C++')">C++</button>
+                                <button type="button" class="chip" onclick="addSkill('C#')">C#</button>
+                                <button type="button" class="chip" onclick="addSkill('Golang')">Go</button>
+                                <button type="button" class="chip" onclick="addSkill('Rust')">Rust</button>
+                                <button type="button" class="chip" onclick="addSkill('Kotlin')">Kotlin</button>
+                                <button type="button" class="chip" onclick="addSkill('Swift')">Swift</button>
+                                <button type="button" class="chip" onclick="addSkill('PHP')">PHP</button>
+                                <button type="button" class="chip" onclick="addSkill('Ruby')">Ruby</button>
+                                <button type="button" class="chip" onclick="addSkill('Dart')">Dart</button>
+                                <button type="button" class="chip" onclick="addSkill('Scala')">Scala</button>
+                                <button type="button" class="chip" onclick="addSkill('R')">R</button>
+                                <button type="button" class="chip" onclick="addSkill('Perl')">Perl</button>
+                                <button type="button" class="chip" onclick="addSkill('Haskell')">Haskell</button>
+                                <button type="button" class="chip" onclick="addSkill('Lua')">Lua</button>
+                                <button type="button" class="chip" onclick="addSkill('MATLAB')">MATLAB</button>
+                                <button type="button" class="chip" onclick="addSkill('Bash')">Bash</button>
+                                <button type="button" class="chip" onclick="addSkill('Groovy')">Groovy</button>
+                                <button type="button" class="chip" onclick="addSkill('Elixir')">Elixir</button>
+                                <button type="button" class="chip" onclick="addSkill('Julia')">Julia</button>
+                                <button type="button" class="chip" onclick="addSkill('Zig')">Zig</button>
+                                <button type="button" class="chip" onclick="addSkill('Solidity')">Solidity</button>
+                                <button type="button" class="chip" onclick="addSkill('COBOL')">COBOL</button>
+                                <button type="button" class="chip" onclick="addSkill('Fortran')">Fortran</button>
+                                <button type="button" class="chip" onclick="addSkill('Clojure')">Clojure</button>
+                                <button type="button" class="chip" onclick="addSkill('Erlang')">Erlang</button>
+                            </div>
+
+                            <!-- AI / ML -->
+                            <div class="chip-panel hidden" id="chip-ai">
+                                <button type="button" class="chip" onclick="addSkill('TensorFlow')">TensorFlow</button>
+                                <button type="button" class="chip" onclick="addSkill('PyTorch')">PyTorch</button>
+                                <button type="button" class="chip" onclick="addSkill('Keras')">Keras</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('scikit-learn')">scikit-learn</button>
+                                <button type="button" class="chip" onclick="addSkill('Pandas')">Pandas</button>
+                                <button type="button" class="chip" onclick="addSkill('NumPy')">NumPy</button>
+                                <button type="button" class="chip" onclick="addSkill('OpenCV')">OpenCV</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('HuggingFace')">HuggingFace</button>
+                                <button type="button" class="chip" onclick="addSkill('NLTK')">NLTK</button>
+                                <button type="button" class="chip" onclick="addSkill('spaCy')">spaCy</button>
+                                <button type="button" class="chip" onclick="addSkill('XGBoost')">XGBoost</button>
+                                <button type="button" class="chip" onclick="addSkill('LightGBM')">LightGBM</button>
+                                <button type="button" class="chip" onclick="addSkill('CatBoost')">CatBoost</button>
+                                <button type="button" class="chip" onclick="addSkill('SciPy')">SciPy</button>
+                                <button type="button" class="chip" onclick="addSkill('ONNX')">ONNX</button>
+                                <button type="button" class="chip" onclick="addSkill('MLflow')">MLflow</button>
+                                <button type="button" class="chip" onclick="addSkill('LangChain')">LangChain</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Transformers')">Transformers</button>
+                                <button type="button" class="chip" onclick="addSkill('Dask')">Dask</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('StatsModels')">StatsModels</button>
+                            </div>
+
+                            <!-- Web Dev -->
+                            <div class="chip-panel hidden" id="chip-web">
+                                <button type="button" class="chip" onclick="addSkill('React')">React</button>
+                                <button type="button" class="chip" onclick="addSkill('Vue')">Vue</button>
+                                <button type="button" class="chip" onclick="addSkill('Angular')">Angular</button>
+                                <button type="button" class="chip" onclick="addSkill('Next.js')">Next.js</button>
+                                <button type="button" class="chip" onclick="addSkill('Nuxt')">Nuxt</button>
+                                <button type="button" class="chip" onclick="addSkill('Svelte')">Svelte</button>
+                                <button type="button" class="chip" onclick="addSkill('Gatsby')">Gatsby</button>
+                                <button type="button" class="chip" onclick="addSkill('Astro')">Astro</button>
+                                <button type="button" class="chip" onclick="addSkill('Node')">Node.js</button>
+                                <button type="button" class="chip" onclick="addSkill('Express')">Express</button>
+                                <button type="button" class="chip" onclick="addSkill('Django')">Django</button>
+                                <button type="button" class="chip" onclick="addSkill('Flask')">Flask</button>
+                                <button type="button" class="chip" onclick="addSkill('FastAPI')">FastAPI</button>
+                                <button type="button" class="chip" onclick="addSkill('Spring')">Spring Boot</button>
+                                <button type="button" class="chip" onclick="addSkill('Laravel')">Laravel</button>
+                                <button type="button" class="chip" onclick="addSkill('Rails')">Rails</button>
+                                <button type="button" class="chip" onclick="addSkill('NestJS')">NestJS</button>
+                                <button type="button" class="chip" onclick="addSkill('HTML')">HTML</button>
+                                <button type="button" class="chip" onclick="addSkill('CSS')">CSS</button>
+                                <button type="button" class="chip" onclick="addSkill('Bootstrap')">Bootstrap</button>
+                                <button type="button" class="chip" onclick="addSkill('Tailwind')">Tailwind</button>
+                                <button type="button" class="chip" onclick="addSkill('GraphQL')">GraphQL</button>
+                                <button type="button" class="chip" onclick="addSkill('Redux')">Redux</button>
+                                <button type="button" class="chip" onclick="addSkill('Vite')">Vite</button>
+                                <button type="button" class="chip" onclick="addSkill('jQuery')">jQuery</button>
+                            </div>
+
+                            <!-- Cloud / DevOps -->
+                            <div class="chip-panel hidden" id="chip-cloud">
+                                <button type="button" class="chip" onclick="addSkill('AWS')">AWS</button>
+                                <button type="button" class="chip" onclick="addSkill('Azure')">Azure</button>
+                                <button type="button" class="chip" onclick="addSkill('GCP')">GCP</button>
+                                <button type="button" class="chip" onclick="addSkill('Docker')">Docker</button>
+                                <button type="button" class="chip" onclick="addSkill('Kubernetes')">Kubernetes</button>
+                                <button type="button" class="chip" onclick="addSkill('Jenkins')">Jenkins</button>
+                                <button type="button" class="chip" onclick="addSkill('Terraform')">Terraform</button>
+                                <button type="button" class="chip" onclick="addSkill('Ansible')">Ansible</button>
+                                <button type="button" class="chip" onclick="addSkill('GitHub Actions')">GitHub
+                                    Actions</button>
+                                <button type="button" class="chip" onclick="addSkill('CircleCI')">CircleCI</button>
+                                <button type="button" class="chip" onclick="addSkill('Heroku')">Heroku</button>
+                                <button type="button" class="chip" onclick="addSkill('Vercel')">Vercel</button>
+                                <button type="button" class="chip" onclick="addSkill('Netlify')">Netlify</button>
+                                <button type="button" class="chip" onclick="addSkill('Firebase')">Firebase</button>
+                                <button type="button" class="chip" onclick="addSkill('Supabase')">Supabase</button>
+                                <button type="button" class="chip" onclick="addSkill('Nginx')">Nginx</button>
+                                <button type="button" class="chip" onclick="addSkill('Linux')">Linux</button>
+                                <button type="button" class="chip" onclick="addSkill('Ubuntu')">Ubuntu</button>
+                                <button type="button" class="chip" onclick="addSkill('Cloudflare')">Cloudflare</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('DigitalOcean')">DigitalOcean</button>
+                            </div>
+
+                            <!-- Databases -->
+                            <div class="chip-panel hidden" id="chip-db">
+                                <button type="button" class="chip" onclick="addSkill('MySQL')">MySQL</button>
+                                <button type="button" class="chip" onclick="addSkill('PostgreSQL')">PostgreSQL</button>
+                                <button type="button" class="chip" onclick="addSkill('MongoDB')">MongoDB</button>
+                                <button type="button" class="chip" onclick="addSkill('Redis')">Redis</button>
+                                <button type="button" class="chip" onclick="addSkill('SQLite')">SQLite</button>
+                                <button type="button" class="chip" onclick="addSkill('Oracle')">Oracle</button>
+                                <button type="button" class="chip" onclick="addSkill('Cassandra')">Cassandra</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Elasticsearch')">Elasticsearch</button>
+                                <button type="button" class="chip" onclick="addSkill('DynamoDB')">DynamoDB</button>
+                                <button type="button" class="chip" onclick="addSkill('Neo4j')">Neo4j</button>
+                                <button type="button" class="chip" onclick="addSkill('InfluxDB')">InfluxDB</button>
+                                <button type="button" class="chip" onclick="addSkill('MariaDB')">MariaDB</button>
+                                <button type="button" class="chip" onclick="addSkill('Snowflake')">Snowflake</button>
+                                <button type="button" class="chip" onclick="addSkill('BigQuery')">BigQuery</button>
+                                <button type="button" class="chip" onclick="addSkill('Prisma')">Prisma</button>
+                                <button type="button" class="chip" onclick="addSkill('Apache Spark')">Apache
+                                    Spark</button>
+                                <button type="button" class="chip" onclick="addSkill('Hadoop')">Hadoop</button>
+                            </div>
+
+                            <!-- Data Visualization -->
+                            <div class="chip-panel hidden" id="chip-viz">
+                                <button type="button" class="chip" onclick="addSkill('Matplotlib')">Matplotlib</button>
+                                <button type="button" class="chip" onclick="addSkill('Seaborn')">Seaborn</button>
+                                <button type="button" class="chip" onclick="addSkill('Plotly')">Plotly</button>
+                                <button type="button" class="chip" onclick="addSkill('Tableau')">Tableau</button>
+                                <button type="button" class="chip" onclick="addSkill('Power BI')">Power BI</button>
+                                <button type="button" class="chip" onclick="addSkill('D3.js')">D3.js</button>
+                                <button type="button" class="chip" onclick="addSkill('Bokeh')">Bokeh</button>
+                                <button type="button" class="chip" onclick="addSkill('Grafana')">Grafana</button>
+                                <button type="button" class="chip" onclick="addSkill('Kibana')">Kibana</button>
+                                <button type="button" class="chip" onclick="addSkill('Looker')">Looker</button>
+                                <button type="button" class="chip" onclick="addSkill('Metabase')">Metabase</button>
+                                <button type="button" class="chip" onclick="addSkill('Superset')">Superset</button>
+                                <button type="button" class="chip" onclick="addSkill('Excel')">Excel</button>
+                                <button type="button" class="chip" onclick="addSkill('Altair')">Altair</button>
+                            </div>
+
+                            <!-- Tools & Platforms -->
+                            <div class="chip-panel hidden" id="chip-tools">
+                                <button type="button" class="chip" onclick="addSkill('Git')">Git</button>
+                                <button type="button" class="chip" onclick="addSkill('GitHub')">GitHub</button>
+                                <button type="button" class="chip" onclick="addSkill('GitLab')">GitLab</button>
+                                <button type="button" class="chip" onclick="addSkill('Bitbucket')">Bitbucket</button>
+                                <button type="button" class="chip" onclick="addSkill('VS Code')">VS Code</button>
+                                <button type="button" class="chip" onclick="addSkill('IntelliJ')">IntelliJ</button>
+                                <button type="button" class="chip" onclick="addSkill('PyCharm')">PyCharm</button>
+                                <button type="button" class="chip" onclick="addSkill('Jupyter')">Jupyter</button>
+                                <button type="button" class="chip" onclick="addSkill('Postman')">Postman</button>
+                                <button type="button" class="chip" onclick="addSkill('Figma')">Figma</button>
+                                <button type="button" class="chip" onclick="addSkill('Arduino')">Arduino</button>
+                                <button type="button" class="chip" onclick="addSkill('Unity')">Unity</button>
+                                <button type="button" class="chip" onclick="addSkill('Unreal')">Unreal Engine</button>
+                                <button type="button" class="chip" onclick="addSkill('Blender')">Blender</button>
+                                <button type="button" class="chip" onclick="addSkill('Photoshop')">Photoshop</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Illustrator')">Illustrator</button>
+                                <button type="button" class="chip" onclick="addSkill('Jira')">Jira</button>
+                                <button type="button" class="chip" onclick="addSkill('Notion')">Notion</button>
+                                <button type="button" class="chip" onclick="addSkill('Slack')">Slack</button>
+                                <button type="button" class="chip" onclick="addSkill('Android')">Android</button>
+                                <button type="button" class="chip" onclick="addSkill('Raspberry Pi')">Raspberry
+                                    Pi</button>
+                            </div>
+
+                            <!-- Core Concepts -->
+                            <div class="chip-panel hidden" id="chip-concepts">
+                                <button type="button" class="chip" onclick="addSkill('Machine Learning')">Machine
+                                    Learning</button>
+                                <button type="button" class="chip" onclick="addSkill('Deep Learning')">Deep
+                                    Learning</button>
+                                <button type="button" class="chip" onclick="addSkill('Computer Vision')">Computer
+                                    Vision</button>
+                                <button type="button" class="chip" onclick="addSkill('NLP')">NLP</button>
+                                <button type="button" class="chip" onclick="addSkill('Neural Networks')">Neural
+                                    Networks</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Reinforcement Learning')">Reinforcement Learning</button>
+                                <button type="button" class="chip" onclick="addSkill('Data Structures')">Data
+                                    Structures</button>
+                                <button type="button" class="chip" onclick="addSkill('Algorithms')">Algorithms</button>
+                                <button type="button" class="chip" onclick="addSkill('OOP')">OOP</button>
+                                <button type="button" class="chip" onclick="addSkill('System Design')">System
+                                    Design</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Microservices')">Microservices</button>
+                                <button type="button" class="chip" onclick="addSkill('DevOps')">DevOps</button>
+                                <button type="button" class="chip" onclick="addSkill('MLOps')">MLOps</button>
+                                <button type="button" class="chip" onclick="addSkill('Agile')">Agile / Scrum</button>
+                                <button type="button" class="chip" onclick="addSkill('Blockchain')">Blockchain</button>
+                                <button type="button" class="chip" onclick="addSkill('IoT')">IoT</button>
+                                <button type="button" class="chip" onclick="addSkill('Embedded Systems')">Embedded
+                                    Systems</button>
+                                <button type="button" class="chip"
+                                    onclick="addSkill('Cybersecurity')">Cybersecurity</button>
+                                <button type="button" class="chip" onclick="addSkill('Robotics')">Robotics</button>
+                                <button type="button" class="chip" onclick="addSkill('Data Science')">Data
+                                    Science</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider-line"><span>Social Links</span></div>
+
+                    <!-- GitHub -->
+                    <div class="form-group">
+                        <label for="github">🐙 GitHub Username</label>
+                        <div class="input-prefix">
+                            <span class="prefix">github.com/</span>
+                            <input type="text" id="github" name="github" placeholder="your-username" />
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn -->
+                    <div class="form-group">
+                        <label for="linkedin">💼 LinkedIn</label>
+                        <div class="input-prefix">
+                            <span class="prefix">linkedin.com/in/</span>
+                            <input type="text" id="linkedin" name="linkedin" placeholder="your-profile" />
+                        </div>
+                    </div>
+
+                    <!-- Twitter -->
+                    <div class="form-group">
+                        <label for="twitter">🐦 Twitter / X</label>
+                        <div class="input-prefix">
+                            <span class="prefix">twitter.com/</span>
+                            <input type="text" id="twitter" name="twitter" placeholder="your-handle" />
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">📧 Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" />
+                    </div>
+
+                    <!-- Portfolio -->
+                    <div class="form-group">
+                        <label for="portfolio">🌐 Portfolio URL</label>
+                        <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com" />
+                    </div>
+
+                    <!-- Generate button -->
+                    <button type="submit" class="btn-generate" id="generateBtn">
+                        <span class="btn-icon">⚡</span>
+                        <span class="btn-text">Generate README</span>
+                        <div class="btn-glow"></div>
+                    </button>
+
+                </form>
+            </section>
+
+            <!-- ===== RIGHT: PREVIEW PANEL ===== -->
+            <section class="preview-panel">
+
+                <!-- Empty state -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">📄</div>
+                    <h3>Your README Preview</h3>
+                    <p>Fill the form and hit <strong>Generate README</strong> to see your profile here</p>
+                    <div class="empty-animation">
+                        <div class="dot-pulse"></div>
+                        <div class="dot-pulse delay-1"></div>
+                        <div class="dot-pulse delay-2"></div>
+                    </div>
+                </div>
+
+                <!-- Loading state -->
+                <div class="loading-state hidden" id="loadingState">
+                    <div class="spinner"></div>
+                    <p>Generating your README...</p>
+                </div>
+
+                <!-- Result state -->
+                <div class="result-state hidden" id="resultState">
+
+                    <div class="result-toolbar glass-card">
+                        <div class="toolbar-tabs">
+                            <button class="tab-btn active" id="tabMarkdown" onclick="switchTab('markdown')">
+                                📝 Markdown
+                            </button>
+                            <button class="tab-btn" id="tabPreview" onclick="switchTab('preview')">
+                                👁️ Preview
+                            </button>
+                        </div>
+                        <div class="toolbar-actions">
+                            <button class="btn-copy" id="copyBtn" onclick="copyReadme()">
+                                📋 Copy
+                            </button>
+                            <button class="btn-download" id="downloadBtn" onclick="downloadReadme()">
+                                ⬇️ Download README.md
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Markdown view -->
+                    <div class="glass-card code-view" id="markdownView">
+                        <pre id="markdownContent"></pre>
+                    </div>
+
+                    <!-- Rendered preview view (hidden by default) -->
+                    <div class="glass-card preview-view hidden" id="previewView">
+                        <div id="renderedPreview"></div>
+                        <p class="preview-note">⚠️ Note: GIFs, badges and stats will only render correctly on GitHub</p>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+        <!-- ===== SUCCESS TOAST ===== -->
+        <div class="toast hidden" id="toast">
+            <span id="toastMsg">✅ Copied!</span>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Built with ❤️ as a student project &nbsp;|&nbsp; Java Spring Boot + Vanilla JS</p>
+        <p class="footer-sub">Not a SaaS product — just a college project 😄</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
