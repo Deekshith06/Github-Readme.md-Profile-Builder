@@ -1,4 +1,4 @@
-// script.js — README Profile Builder
+// script.js — README Portfolio Builder
 // handles form, auto-fill, preview, download
 
 const API_BASE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
