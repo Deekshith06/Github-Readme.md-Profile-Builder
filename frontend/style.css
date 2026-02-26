@@ -654,13 +654,19 @@ body {
 }
 
 .layout-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    align-items: stretch;
+    align-items: start;
     transition: all 0.5s ease;
+}
+
+@media (max-width: 960px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Removed `.layout-grid.has-preview` logic since the preview always takes up the right half */
