@@ -1,6 +1,6 @@
 <div align="center">
 
-# 👨‍💻 jj
+# 👨‍💻 ggu
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=AI%20%26%20Machine%20Learning&fontSize=45&fontColor=fff&animation=twinkling&fontAlignY=35&desc=Passionate%20about%20building%20AI%20systems%2C%20&descAlignY=55&descSize=18">
@@ -13,11 +13,11 @@
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%" alt="divider">
 
-[![Profile Views](https://komarev.com/ghpvc/?username=j&label=Profile%20Views&color=00D9FF&style=for-the-badge)](https://github.com/j)
-[![GitHub followers](https://img.shields.io/github/followers/j?logo=github&style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/j)
-[![Repos](https://badges.pufler.dev/repos/j?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/j?tab=repositories)
-[![Years](https://badges.pufler.dev/years/j?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/j)
-[![Commits](https://badges.pufler.dev/commits/monthly/j?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/j)
+[![Profile Views](https://komarev.com/ghpvc/?username=h&label=Profile%20Views&color=00D9FF&style=for-the-badge)](https://github.com/h)
+[![GitHub followers](https://img.shields.io/github/followers/h?logo=github&style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/h)
+[![Repos](https://badges.pufler.dev/repos/h?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/h?tab=repositories)
+[![Years](https://badges.pufler.dev/years/h?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/h)
+[![Commits](https://badges.pufler.dev/commits/monthly/h?style=for-the-badge&color=00D9FF&labelColor=0D1117)](https://github.com/h)
 
 </div>
 
@@ -28,9 +28,9 @@
 <img align="right" alt="Coding" width="400" src="https://user-images.githubusercontent.com/74038190/229223263-cf2e4b07-2615-4f87-9c38-e37600f8381a.gif">
 
 ```python
-class jj:
+class ggu:
     def __init__(self):
-        self.name = "jj"
+        self.name = "ggu"
         self.role = "AI & Machine Learning"
         self.languages = ["Python"]
         self.interests = ["TensorFlow", "PyTorch", "Pandas"]
@@ -74,13 +74,13 @@ class jj:
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=j&theme=radical&hide_border=true&background=0D1117&ring=00D9FF&fire=00D9FF&currStreakLabel=00D9FF&stroke=00D9FF&sideNums=00D9FF&sideLabels=C9D1D9&dates=C9D1D9)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com?user=h&theme=radical&hide_border=true&background=0D1117&ring=00D9FF&fire=00D9FF&currStreakLabel=00D9FF&stroke=00D9FF&sideNums=00D9FF&sideLabels=C9D1D9&dates=C9D1D9)](https://git.io/streak-stats)
 
-<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=j&theme=radical" />
-<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=j&theme=radical" />
-<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=j&theme=radical" />
-<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=j&theme=radical" />
-<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=j&theme=radical&utcOffset=5.5" />
+<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=h&theme=radical" />
+<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=h&theme=radical" />
+<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=h&theme=radical" />
+<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=h&theme=radical" />
+<img width="49%" src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=h&theme=radical&utcOffset=5.5" />
 
 </div>
 
@@ -90,7 +90,7 @@ class jj:
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=j&theme=radical&no-frame=true&no-bg=true&column=4&row=2&margin-w=15&margin-h=15" />
+<img src="https://github-profile-trophy.vercel.app/?username=h&theme=radical&no-frame=true&no-bg=true&column=4&row=2&margin-w=15&margin-h=15" />
 
 </div>
 
@@ -100,9 +100,9 @@ class jj:
 
 <div align="center">
 
-<img src="https://ghchart.rshah.org/00D9FF/j" alt="GitHub Contribution Chart" width="90%" />
+<img src="https://ghchart.rshah.org/00D9FF/h" alt="GitHub Contribution Chart" width="90%" />
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=j&custom_title=Contribution+Graph&hide_border=true&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&area_color=00D9FF)](https://github.com/j)
+[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=h&custom_title=Contribution+Graph&hide_border=true&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&area_color=00D9FF)](https://github.com/h)
 
 </div>
 
@@ -112,10 +112,10 @@ class jj:
 
 <div align="center">
 
-<a href="https://linkedin.com/in/m">
+<a href="https://linkedin.com/in/h">
   <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
 </a>
-<a href="https://github.com/j">
+<a href="https://github.com/h">
   <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
 </a>
 
@@ -137,7 +137,7 @@ class jj:
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=150&section=footer&animation=twinkling" alt="Footer Wave" />
 
-**⭐ From [jj](https://github.com/j) | Building the future with AI 🚀**
+**⭐ From [ggu](https://github.com/h) | Building the future with AI 🚀**
 
 <img src="https://raw.githubusercontent.com/Platane/snk/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
 

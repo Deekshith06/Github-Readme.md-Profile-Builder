@@ -33,8 +33,40 @@ document.addEventListener("DOMContentLoaded", () => {
         if (about) about.value = spec.about;
         if (skills) skills.value = spec.skills;
     });
+
+    // Set initial theme
+    document.body.className = 'theme-home';
 });
 
+// ---- page routing / theme switching ----
+function switchPage(pageId) {
+    // Update nav buttons
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+    // Find the clicked button explicitly by an attribute, or just match text. 
+    // An easy fallback is checking which button calls switchPage(pageId)
+    const btns = document.querySelectorAll('.nav-btn');
+    if (pageId === 'home') btns[0].classList.add('active');
+    else if (pageId === 'generator') btns[1].classList.add('active');
+    else if (pageId === 'about') btns[2].classList.add('active');
+
+    // Update sections
+    document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active', 'hidden'));
+    document.querySelectorAll('.page-section').forEach(sec => {
+        if (sec.id !== `page-${pageId}`) {
+            sec.classList.add('hidden');
+        } else {
+            sec.classList.add('active');
+        }
+    });
+
+    // Update body theme class to trigger CSS variable transitions
+    document.body.className = `theme-${pageId}`;
+
+    // Scroll to top of main content
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) mainContent.scrollTop = 0;
+}
 
 // ---- particle background ----
 (function () {
@@ -149,8 +181,7 @@ document.getElementById("readmeForm").addEventListener("submit", async function 
     document.getElementById("markdownContent").textContent = generatedReadme;
     showState("result");
     switchTab("markdown");
-    if (window.innerWidth < 960)
-        document.getElementById("resultState").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("resultState").scrollIntoView({ behavior: "smooth", block: "start" });
 
     btn.classList.remove("loading");
     btn.querySelector(".btn-text").textContent = "Generate README";
@@ -210,6 +241,7 @@ function downloadReadme() {
 // ---- ui state / toast ----
 function showState(s) {
     ["emptyState", "loadingState", "resultState"].forEach(id => document.getElementById(id).classList.add("hidden"));
+
     const map = { loading: "loadingState", result: "resultState" };
     document.getElementById(map[s] || "emptyState").classList.remove("hidden");
 }
@@ -470,3 +502,50 @@ function buildBadges(skills) {
     });
     return b;
 }
+
+
+
+function shareToBot(bot) {
+    if (!generatedReadme) {
+        showToast("⚠️ No README generated yet!");
+        return;
+    }
+
+    let url = "";
+    if (bot === 'chatgpt') url = "https://chatgpt.com/";
+    else if (bot === 'claude') url = "https://claude.ai/new";
+    else if (bot === 'gemini') url = "https://gemini.google.com/app";
+
+    // Direct opening synchronous with the click avoids popup blockers
+    if (url) {
+        window.open(url, '_blank');
+    }
+
+    navigator.clipboard.writeText(generatedReadme).then(() => {
+        showToast(`✅ Copied! Paste your README in ${bot}`);
+    }).catch(() => {
+        const t = document.createElement("textarea");
+        t.value = generatedReadme;
+        document.body.appendChild(t); t.select(); document.execCommand("copy"); document.body.removeChild(t);
+        showToast(`✅ Copied! Paste your README in ${bot}`);
+    });
+}
+
+// ---- initialize skills UI ----
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.chip-panel').forEach(panel => {
+        // Add icons tracking
+        panel.querySelectorAll('.chip').forEach(btn => {
+            const skill = btn.textContent.trim().toLowerCase();
+            const match = BADGE_MAP.find(([k]) => skill.includes(k) || k.includes(skill) || skill === k);
+            if (match) {
+                const color = match[1];
+                const logo = match[2];
+                const iconUrl = `https://cdn.simpleicons.org/${logo}/${color}`;
+                btn.innerHTML = `<img src="${iconUrl}" class="chip-icon" alt="${skill}" /> ${btn.textContent}`;
+            } else {
+                btn.innerHTML = `<span class="chip-dot"></span> ${btn.textContent}`;
+            }
+        });
+    });
+});

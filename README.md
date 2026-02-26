@@ -32,8 +32,8 @@ graph TD
 
     subgraph Step 3: Result
         G --> H["Preview in Browser"]
-        H -->|Copy| I["Clipboard"]
-        H -->|Download| J["README.md file"]
+        H -->|Copy / Download| I["Markdown Text"]
+        H -->|Send to AI| J["ChatGPT / Claude / Gemini"]
     end
 ```
 
@@ -90,9 +90,10 @@ open index.html # Or just double click the file
 
 | Feature | Description |
 |--------|-------------|
+| **Liquid UI Design** | Glassmorphism, ambient particles, and sleek side-by-side component layouts |
 | **Dynamic Headers** | Capsule-render animated waving banners |
 | **Typing Animation** | Cycles through your top skills |
-| **Categorization** | Auto-categorizes skills into languages, AI, DBs, etc. |
+| **AI Bot Integration** | Send your README code directly to ChatGPT, Claude, or Gemini in one click |
 | **Rich Badges** | Shields.io and TechStack SVGs |
 | **GitHub Stats** | Streak, Summaries, Trophies, and Contribution heatmaps |
 
